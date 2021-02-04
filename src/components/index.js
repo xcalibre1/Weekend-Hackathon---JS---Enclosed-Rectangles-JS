@@ -23,7 +23,7 @@ function updateStructure(rec1,rec2){
 	let right2=Number(rec2.right.substr(0,rec2.right.length-2)),right1=Number(rec1.right.substr(0,rec1.right.length-2));
 	let bottom2=Number(rec2.bottom.substr(0,rec2.bottom.length-2)),bottom1=Number(rec1.bottom.substr(0,rec1.bottom.length-2));
   console.log(top1,top2,bottom1,bottom2,right1,right2,left1,left2,height1,height2,width1,width2)
-	if(((top2+bottom2)>(top1+bottom1) && height1>height2) &&((left2+right2)>(left1+right1) && width1>width2)){
+	if(((top2+bottom2)>=(top1+bottom1) && height1>=height2) &&((left2+right2)>=(left1+right1) && width1>=width2)){
 		let obj={
                         top: `${Math.abs(top2-top1)}px`,
                         left: `${Math.abs(left2-left1)}px`,
@@ -66,20 +66,6 @@ function updateStructure(rec1,rec2){
 		return {
 			...rec2,
                         children: [obj]
-                }
-	}
-	else if(((top2+bottom2)==(top1+bottom1) && height1==height2) &&((left2+right2)==(left1+right1) && width1==width2)){
-		for(let key in rec1 ){
-			if(rec1[key]=="0px")
-				delete rec1[key];
-		}
-		for(let key in rec2 ){
-			if(rec2[key]=="0px")
-				delete rec2[key];
-		}
-		return {
-			...rec1,
-                        children: [rec1]
                 }
 	}
 	else{
