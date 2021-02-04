@@ -69,9 +69,17 @@ function updateStructure(rec1,rec2){
                 }
 	}
 	else if(((top2+bottom2)==(top1+bottom1) && height1==height2) &&((left2+right2)==(left1+right1) && width1==width2)){
+		for(let key in rec1 ){
+			if(rec1[key]=="0px")
+				delete rec1[key];
+		}
+		for(let key in rec2 ){
+			if(rec2[key]=="0px")
+				delete rec2[key];
+		}
 		return {
 			...rec1,
-                        children: [rec2]
+                        children: [rec1]
                 }
 	}
 	else{
